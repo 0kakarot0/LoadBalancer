@@ -33,7 +33,7 @@ public class LoadBalancer {
             System.out.println(current.getKey() + current.getValue());
         }
         System.out.println(" ");
-        RequestToServer.sendRequestToBackEndServer("Unknown", 3);
+        RequestToServer.sendRequestToBackEndServer(startUpLoadBalancerServer().get("Received request from "), 3);
     }
 
 
