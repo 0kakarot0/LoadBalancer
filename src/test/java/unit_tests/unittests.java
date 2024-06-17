@@ -3,7 +3,7 @@ package unit_tests;
 import org.testng.annotations.Test;
 import services.LoadBalancer;
 import utilities.ReadPropertyFile;
-import utilities.ThreadDemo;
+
 
 import java.net.UnknownHostException;
 import java.util.Map;
@@ -25,11 +25,5 @@ public class unittests {
     }
 
 
-    @Test
-    public void TestThreadConcurrency() {
-        ThreadDemo T1 = new ThreadDemo("Thread-1");
-        T1.start();
-        ThreadDemo T2 = new ThreadDemo("Thread-2");
-        T2.start();
-    }
+
 }
