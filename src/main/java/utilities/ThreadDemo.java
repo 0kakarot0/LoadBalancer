@@ -16,7 +16,7 @@ class ThreadDemo extends Thread {
                 System.out.println("Thread: " + threadName + ", " + i);
 
                 // Let the thread sleep for a while.
-                Thread.sleep(50);
+                Thread.sleep(200);
             }
         } catch (InterruptedException e) {
             System.out.println("Thread " +  threadName + " interrupted.");
