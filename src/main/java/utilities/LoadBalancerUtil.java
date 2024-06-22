@@ -12,8 +12,12 @@ public class LoadBalancerUtil {
     private static LoadBalancerInformation loadBalancerInformation;
     private static LinkedHashMap<String, String> contructInformation = new LinkedHashMap<>();
 
-    public static LinkedHashMap<String, String> startTheLoadBalancer(String initailCommand) throws UnknownHostException {
-        fillTheModel(initailCommand);
+    private static final String HTTP_METHOD_STRING = "HTTP/1.1";
+    private static final String USER_AGENT_STRING = "/7.85.0";
+    private static final String ACCEPT_STRING = "*/*";
+
+    public static LinkedHashMap<String, String> startTheLoadBalancer(String initialCommand) throws UnknownHostException {
+        fillTheModel(initialCommand);
         contructInformation.put("Received request from ", loadBalancerInformation.getRequestIp());
         contructInformation.put("GET /", loadBalancerInformation.getHttpMethod());
         contructInformation.put("Host: ", loadBalancerInformation.getHostName());
@@ -22,14 +26,19 @@ public class LoadBalancerUtil {
         return contructInformation;
     }
 
-    private static void fillTheModel(String initailCommand) throws UnknownHostException {
+    private static void fillTheModel(String initialCommand) throws UnknownHostException {
         loadBalancerInformation = new LoadBalancerInformation(
                 InetAddress.getByName("localhost").getHostAddress(),
-                "HTTP/1.1",
+                HTTP_METHOD_STRING,
                 InetAddress.getByName("localhost").getHostName(),
-                initailCommand + "/7.85.0",
-                "*/*"
+                getUserAgentString(initialCommand),
+                ACCEPT_STRING
         );
+    }
+
+    private static String getUserAgentString(String initialCommand) {
+        return initialCommand + USER_AGENT_STRING;
+
     }
 
 
