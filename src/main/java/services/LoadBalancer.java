@@ -53,10 +53,10 @@ public class LoadBalancer {
     private static void sendRequestToBankEndServers(List<String> commandList) {
         for (String command : commandList) {
             String server = getNextServer();
-            addServerAgainIfAlive(server);
+//            addServerAgainIfAlive(server);
             String receivedRequestOnServer = "Routing " + command + " to server: " + server;
             RequestToServer.sendRequestToBackEndServer(server, commandList.size(), receivedRequestOnServer);
-            removeFromServerIfNotAlive(server);
+//            removeFromServerIfNotAlive(server);
 
         }
     }
@@ -104,7 +104,7 @@ public class LoadBalancer {
                 removeFromServerIfNotAlive(server);
                 addServerAgainIfAlive(server);
             }
-        },0,10, TimeUnit.MILLISECONDS);
+        },0,10, TimeUnit.SECONDS);
     }
 
     private static String inCaseOfSingleURLCommand() {
